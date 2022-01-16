@@ -6,7 +6,7 @@ Python contains most of the features of C++ in a simpler package. Let's go
 over some differences.
  * C++ requires manual memory management. Python has a garbage collector that
    will usually free memory when a variable is released.
- * Python does not use braces around most scopes and instead relies on 
+ * Python does not use braces around most scopes and instead relies on
    indentation.
  * Python does not use semicolons at the end of lines. New lines are considered
    new statements, except in some cases such as multiline comments or within
@@ -17,7 +17,7 @@ over some differences.
  * Python does not have "pass by reference"; it uses "pass by assignment". This
    means that if a mutable object is passed into a function (e.g., a list), you
    can modify that object; if the variable is reassigned, the original object
-   does not change. It's generally a good idea to return values  from functions
+   does not change. It's generally a good idea to return values from functions
    rather than attempt to modify a parameter. View this Stack Overflow answer
    for more details: https://stackoverflow.com/a/986145
  * In Python, functions must be defined before they can be called. Prototypes do
@@ -50,20 +50,20 @@ def my_func2(arg1):
 
 # One of the few times you may want to define a type explicitly is when you want
 # to ensure a function receives only a certain data type.
-def my_func3(arg1 : str):
+def my_func3(arg1: str):
     pass
 
 
 # Here is a function that takes two integer arguments named "x" and "y" then
-# returns the sum of these two numbers.
-# Note that functions are by default "void" unless a return statement is used.
-def sum(x : int, y : int):
+# returns the sum of these two numbers. Note that functions are by default
+# "void" unless a return statement is used.
+def sum(x: int, y: int):
     return x + y
 
 
 # Here is a function that takes two integer arguments named "x" and "y" then
 # returns the larger of the two numbers, or "y" if x == y.
-def max(x : int, y : int):
+def max(x: int, y: int):
     if x > y:
         return x
     else:
@@ -71,7 +71,7 @@ def max(x : int, y : int):
 
 
 # Here is a function that "clamps" a number between two values.
-def clamp(low : int, high : int, val : int):
+def clamp(low: int, high: int, val: int):
     if val > high:
         return high
     elif val < low:
@@ -81,7 +81,7 @@ def clamp(low : int, high : int, val : int):
 
 
 # And here is a function that returns whether two numbers are the same.
-def equals(x : int, y : int):
+def equals(x: int, y: int):
     # Ideally, just return x == y, but this is for demonstration purposes.
     return x > y or x < y
 
@@ -155,8 +155,10 @@ def create_dict():
 
     # Jane should have her own dictionary entry, but for our purposes, we'll add
     # some extra data about her.
+    # "del" will delete the entire key and its data from the dictionary.
     del my_dict["spouse_name"]
 
+    # "spouse" is now a dictionary of its own!
     my_dict["spouse"] = {
         "name_first": "Jane",
         "name_middle": "B",
@@ -174,7 +176,7 @@ def create_dict():
 
 # Let's go over loops. Python does not have do-while loops.
 # This function prints the numbers from 1 to the input.
-def while_loop(x : int):
+def while_loop(x: int):
     # Like other languages, we must define our bounds outside the while loop.
     num = 1
 
@@ -375,5 +377,6 @@ if __name__ == "__main__":
 '''
 This has been your Python crash course! Of course there's a ton more to learn,
 and I can hopefully answer most other questions you'll have. We're going to put
-it all together in a different file and make an actual working program!
+it all together in a different file and make an actual working program! Go check
+out my_program.py.
 '''

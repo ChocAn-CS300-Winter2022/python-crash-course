@@ -23,13 +23,14 @@ import json
 
 class Person:
     # We're going to provide the given filename to the initializer so the class
-    # can store that information. Also note the triple quoted string; that's a
-    # "docstring", which gives information about the function. Hover over the
-    # function name in a text editor like Visual Studio Code to see the
-    # docstring.
-    def __init__(self, filename):
-        """Initialize the Person class. Filename should be a string pointing to
-        the file to load from."""
+    # can store that information.
+    def __init__(self, filename: str):
+        """
+        Initialize the Person class.
+
+        Arguments:
+        filename -- the filename to load the Person instance from
+        """
         self.first_name = ""
         self.middle_initial = ''
         self.last_name = ""
