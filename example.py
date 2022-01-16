@@ -1,4 +1,5 @@
-''' This is a Python Basics file for the CS300 term project. This is a Python
+'''
+This is a Python Basics file for the CS300 term project. This is a Python
 multi-line comment.
 
 Python contains most of the features of C++ in a simpler package. Let's go
