@@ -58,12 +58,21 @@ def my_func3(arg1: str):
 # returns the sum of these two numbers. Note that functions are by default
 # "void" unless a return statement is used.
 def sum(x: int, y: int):
+    # Also notice that there is a statement under the function name surrounded
+    # by three sets of double quotes. This is called a "docstring", and it
+    # documents the functionality of the method. In some text editors, it will
+    # display this information to the user when they type or hover over the
+    # function name. You should almost always include docstrings.
+    # If you want to read more about docstring conventions, check out
+    # https://www.python.org/dev/peps/pep-0257/
+    """Return the sum of two numbers."""
     return x + y
 
 
 # Here is a function that takes two integer arguments named "x" and "y" then
 # returns the larger of the two numbers, or "y" if x == y.
 def max(x: int, y: int):
+    """Return the maximum of two numbers."""
     if x > y:
         return x
     else:
@@ -72,6 +81,7 @@ def max(x: int, y: int):
 
 # Here is a function that "clamps" a number between two values.
 def clamp(low: int, high: int, val: int):
+    """Clamp a number between two values."""
     if val > high:
         return high
     elif val < low:
@@ -82,6 +92,7 @@ def clamp(low: int, high: int, val: int):
 
 # And here is a function that returns whether two numbers are the same.
 def equals(x: int, y: int):
+    """Check if two numbers are equal to each other."""
     # Ideally, just return x == y, but this is for demonstration purposes.
     return x > y or x < y
 
@@ -89,6 +100,7 @@ def equals(x: int, y: int):
 # This function will be used to create the list that we will use for the rest of
 # the examples.
 def create_list():
+    """Create a list of STEM subjects."""
     # Start by defining a list with one element. Lists are the default array
     # type in Python, and can contain multiple data types at once.
     my_list = ["Biology"]
@@ -131,6 +143,7 @@ def create_list():
 
 # This function will create the dictionary we'll be using for the other examples.
 def create_dict():
+    """Create a dictionary for John Smith and his family."""
     # First create the dictionary. Note that we can have multiple value types
     # and that we can have sublists and subdictionaries.
     my_dict = {
@@ -177,6 +190,7 @@ def create_dict():
 # Let's go over loops. Python does not have do-while loops.
 # This function prints the numbers from 1 to the input.
 def while_loop(x: int):
+    """Use a while loop to print from 1 to x."""
     # Like other languages, we must define our bounds outside the while loop.
     num = 1
 
@@ -188,6 +202,7 @@ def while_loop(x: int):
 
 # This for loop starts at 0 and ends at the input - 1.
 def for_range(x):
+    """Use a for loop to print from 0 to x."""
     # Note that the first value is inclusive and the second is exclusive, e.g.
     # if x = 10, then this will print 0 to 9.
     for i in range(0, x):
@@ -200,6 +215,7 @@ def for_range(x):
 
 # This for loop starts at the first element in a list and prints the list.
 def for_list(list):
+    """Use a for loop to print each item in a list."""
     # You can loop through each item with a variable name.
     for item in list:
         print(item)
@@ -211,6 +227,7 @@ def for_list(list):
 
 # This function will loop through a dictionary using a for loop.
 def for_dict(dict):
+    """Use a for loop to iterate over the keys and values in a dictionary."""
     # Loop through the keys and access values through indexing.
     # The same can be achieved with "for key in dict.keys()".
     for key in dict:
@@ -227,6 +244,7 @@ def for_dict(dict):
 
 # This function will return only the values in list that start with the filter.
 def filter_list(list, filter):
+    """Filter a list to entries that start with filter."""
     # This is basically using a for loop. We name each item in the list "value",
     # then check if the value starts with the provided filter. The outer
     # brackets [] say that this is an array, while the inside acts as a for loop
@@ -238,6 +256,8 @@ def filter_list(list, filter):
 # filter, then only the values that start with the filter. Then it will return
 # both of these lists as a tuple.
 def filter_dict(dict, key_filter, value_filter):
+    """Filter a dictionary to lists with either the keys or values that start
+    with filter."""
     key_dict = [key for key in dict if key.startswith(key_filter)]
 
     # Note that you can split this definition over multiple lines because it is
@@ -262,6 +282,7 @@ class MyClass:
     # be named anything. This parameter is automatic and should never actually
     # be supplied when calling the function.
     def __init__(self):
+        """Initialize the MyClass instance."""
         # Create an integer variable named "my_var" that belongs to the class.
         self.my_var = 1
 
@@ -284,6 +305,7 @@ class MyClass:
         my_null = None
 
     def my_class_func(self):
+        """Print the value of my_var."""
         print(self.my_var)  # Print the class variable "my_var" to the console.
 
 
@@ -293,6 +315,7 @@ class MyChild(MyClass):
     # automatic reference to the class instance; the second and third are user
     # provided.
     def __init__(self, first_name, last_name):
+        """Initialize the MyChild instance."""
         # You need to explicitly call the parent's constructor. super() refers
         # only to the parent class, not the base class.
         super().__init__()
@@ -311,6 +334,7 @@ class MyChild(MyClass):
     # is determined at runtime based on context. Note that the original function
     # in the parent class doesn't need the "virtual" keyword.
     def my_class_func(self):
+        """Print an overridden statement."""
         print("Overridden!")
 
 
