@@ -25,6 +25,8 @@ class Person:
     # We're going to provide the given filename to the initializer so the class
     # can store that information.
     def __init__(self, filename: str):
+        # This docstring has some info about its arguments because "filename"
+        # isn't descriptive enough to know what it is.
         """
         Initialize the Person class.
 
