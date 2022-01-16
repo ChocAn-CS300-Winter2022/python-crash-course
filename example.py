@@ -6,7 +6,8 @@ Python contains most of the features of C++ in a simpler package. Let's go
 over some differences.
  * C++ requires manual memory management. Python has a garbage collector that
    will usually free memory when a variable is released.
- * Python does not use braces around scopes and instead relies on indentation.
+ * Python does not use braces around most scopes and instead relies on 
+   indentation.
  * Python does not use semicolons at the end of lines. New lines are considered
    new statements, except in some cases such as multiline comments or within
    array and dictionary brackets.
