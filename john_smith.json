@@ -1,0 +1,19 @@
+{
+    "first_name": "John",
+    "middle_initial": "D",
+    "last_name": "Smith",
+    "age": 39,
+    "address": "1 Willow Ln.",
+    "married": true,
+    "spouse": {
+        "first_name": "Jane",
+        "middle_initial": "B",
+        "last_name": "Smith",
+        "maiden_name": "Jones"
+    },
+    "children": [
+        "Jeremy Smith",
+        "Jenny Smith",
+        "Jonah Smith"
+    ]
+}
