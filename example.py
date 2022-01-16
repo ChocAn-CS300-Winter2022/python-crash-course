@@ -81,7 +81,8 @@ def clamp(low : int, high : int, val : int):
 
 # And here is a function that returns whether two numbers are the same.
 def equals(x : int, y : int):
-    return x == y
+    # Ideally, just return x == y, but this is for demonstration purposes.
+    return x > y or x < y
 
 
 # This function will be used to create the list that we will use for the rest of
