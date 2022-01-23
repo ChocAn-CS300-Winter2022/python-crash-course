@@ -3,6 +3,9 @@ Welcome to the non-comprehensive Python crash course! This is intended for stude
 
 Start with [example.py](example.py) and then move on to [my_program.py](my_program.py). Also check out [john_smith.json](john_smith.json) to see what kind of information you'll be loading. If you have any other questions, feel free to ask.
 
+## A word of caution
+Now that `example.py` reads and writes to a file, be careful! Don't enter any files that you don't want to lose data in, because they will likely be overwritten, even if you cancel the program (read the comments in the `write_file()` function in `example.py`).
+
 ## Infrequently Asked Questions and Statements
 ### These files are long and scary.
 Rest assured that a lot of that length is only whitespace and comments!
