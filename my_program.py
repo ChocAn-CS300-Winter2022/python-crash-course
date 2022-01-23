@@ -54,14 +54,17 @@ class Person:
             print("Invalid file.")
             return
 
-        # Open the file in read mode. "with" closes the file at the end of the 
+        # Open the file in read mode. "with" closes the file at the end of the
         # scope (the "with" block). Without it, we would have to manually close
         # the file with file.close().
         with open(self.file, "r") as file:
+            # We're going to store this data in a variable so we can see how it
+            # looks later.
+            self.json_data = json.load(file)
             # __dict__ is a reference to all the member variables of this class
             # as a dictionary. We use the update() function to take any values
             # in the JSON file and attach them to their corresponding variables.
-            self.__dict__.update(json.load(file))
+            self.__dict__.update(self.json_data)
 
     def save(self):
         """Save the Person to the provided file."""
