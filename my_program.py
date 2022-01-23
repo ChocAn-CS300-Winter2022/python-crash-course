@@ -54,7 +54,9 @@ class Person:
             print("Invalid file.")
             return
 
-        # Open the file in read mode.
+        # Open the file in read mode. "with" closes the file at the end of the 
+        # scope (the "with" block). Without it, we would have to manually close
+        # the file with file.close().
         with open(self.file, "r") as file:
             # __dict__ is a reference to all the member variables of this class
             # as a dictionary. We use the update() function to take any values
