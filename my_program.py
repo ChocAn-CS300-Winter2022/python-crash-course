@@ -82,8 +82,9 @@ class Person:
         del to_write["file"]
 
         # Then we can open the file with write access and dump the new JSON
-        # into it.
-        with open(self.file, "w+") as file:
+        # into it. Note that the only way to output accurate JSON is to dump the
+        # entire JSON string into the file at once.
+        with open(self.file, "w") as file:
             json.dump(to_write, file, indent=4, sort_keys=False)
 
     def is_valid(self):
@@ -143,16 +144,20 @@ class Person:
             for child in self.children:
                 print("    " + child)
 
-
 class Menu:
     # Here's the enum from earlier. Notice that Main, Change, and MarriageStatus
     # are set to 0, 1, and 2: this is because behind the scenes, they are
     # integers, but we can call them using their names! Basically, it's a fancy
     # wrapper for integer variables that denote a specific type.
+    # We can change the internal values and move them around without affecting
+    # functionality. Since the last version, I've added "JsonInfo" here and
+    # given it the value of 2 while moving MarriageStatus to 3, but none of the
+    # references to MarriageStatus have to change!
     class Page(Enum):
         Main = 0
         Change = 1
-        MarriageStatus = 2
+        JsonInfo = 2
+        MarriageStatus = 3
 
     def __init__(self):
         """Initialize the Menu."""
@@ -173,7 +178,8 @@ class Menu:
             print("What do you want to do?")
             print("1) Display information")
             print("2) Change information")
-            print("3) Quit")
+            print("3) View JSON")
+            print("4) Quit")
         elif self.page == Menu.Page.Change:
             print(f"What do you want to change?")
             print("1) First name")
@@ -184,6 +190,11 @@ class Menu:
             print("6) Marriage status")
             print("7) Add child")
             print("8) Back")
+        elif self.page == Menu.Page.JsonInfo:
+            print("1) Print JSON string")
+            print("2) Print formatted JSON string")
+            print("3) Print individual value")
+            print("4) Back")
         else:
             print("1) Married")
             print("2) Unmarried")
@@ -228,17 +239,17 @@ def main():
         if menu.page == Menu.Page.Main:
             if command == "1":
                 john_smith.display()
-                pass
             elif command == "2":
                 menu.page = Menu.Page.Change
-                pass
             elif command == "3":
-                # If the user enters "3" on the main menu, let them quit by
+                menu.page = Menu.Page.JsonInfo
+            elif command == "4":
+                # If the user enters "4" on the main menu, let them quit by
                 # setting quit to True.
                 quit = True
             else:
                 print("Invalid command. Please try again.")
-        else:
+        elif menu.page == Menu.Page.Change:
             if command == "1":
                 john_smith.first_name = input("First name: ")
             elif command == "2":
@@ -275,6 +286,8 @@ def main():
                     # information will not be deleted. We should be ensuring
                     # that they enter y, n, yes, no, or any capitalization,
                     # but this is an example program.
+                    # We're also splitting the string over multiple code lines,
+                    # but it will display as one.
                     command = input("Do you want to remove spouse information? "
                                     "(y/n) ")
 
@@ -289,6 +302,26 @@ def main():
             elif command == "8":
                 # To go back to the main menu, we just set the current menu page
                 # to Menu.Page.Main.
+                menu.page = Menu.Page.Main
+            else:
+                print("Invalid command. Please try again.")
+        else:
+            if command == "1":
+                print(john_smith.json_data)
+            elif command == "2":
+                for key, value in john_smith.json_data.items():
+                    print(f"{key}: {value}")
+            elif command == "3":
+                value = input("Enter value to view (if not sure, use one of "
+                    "the other options): ")
+
+                # We can access this individual member with a key like a
+                # dictionary!
+                if value in john_smith.json_data:
+                    print(f"{value}: {john_smith.json_data[value]}")
+                else:
+                    print("Value not found in JSON data.")
+            elif command == "4":
                 menu.page = Menu.Page.Main
             else:
                 print("Invalid command. Please try again.")
