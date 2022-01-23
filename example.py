@@ -34,6 +34,8 @@ from os import path         # You can also import individual elements of a
                             # library.
 import os.path as p         # Or import individual elements with an alias for
                             # easier access.
+from pathlib import Path    # This is the actual library we'll be using to
+                            # create paths for file reading and writing.
 
 
 # To define a function, use "def" followed by the function name.
@@ -272,6 +274,86 @@ def filter_dict(dict, key_filter, value_filter):
     return (key_dict, value_dict)
 
 
+# Time to learn how to read from a text file.
+def read_file(filename):
+    """Read from a text file."""
+    # This creates a file "object" using the pathlib library.
+    # The path will be at "./filename".
+    file = Path(".") / filename
+
+    # Let's first ensure the file exists.
+    if not file.is_file():
+        print("Invalid file.")
+        return
+
+    # The "with" statement opens a file within its scope. When the "with"
+    # statement ends, the file automatically closes. Without "with", we would
+    # have to manually close the file with f.close().
+    # We're also going to open the file in read mode with 'r'.
+    # 'r' = read
+    # 'w' = write
+    # 'a' = append
+    # 'w+' = write and read
+    with open(file, 'r') as f:
+        # We're going to use readlines() here.
+        # read() will read all the text in a file into a single string.
+        # readlines() will read all lines from the file into a list of strings.
+        read = f.read()
+        # An internal line feed has moved from the beginning to the end of the
+        # file as it read, so we need to reset it back to the beginning.
+        f.seek(0)
+        readlines = f.readlines()
+
+        # Reset the feed again, then we can also read the file line-by-line.
+        f.seek(0)
+        for line in f:
+            for_lines = []
+            for_lines.append(line)
+
+    # Now we're returning a 3-tuple!
+    return (read, readlines, for_lines)
+
+
+def write_file(filename):
+    """Save data to a text file."""
+    # Let's create the file object again. In reality, we would probably want to
+    # store this value somewhere instead of creating it again, but these are
+    # technically two "unrelated" functions so we'll do it twice.
+    file = Path(".") / filename
+
+    if not file.is_file():
+        print("Invalid file.")
+
+    with open(file, 'w') as f:
+        # First we're going to get some user input using the "input" function.
+        # The text within the input() call is the prompt to display to the user.
+        line = input("Enter some text: ")
+
+        # Then we're going to write that text to the file as a single line.
+        f.write(line)
+
+        # Now I will repeat this question 10 times to create a list of strings.
+        lines = []
+
+        for i in range(0, 10):
+            lines.append(input(f"Enter some text ({i}): "))
+
+        # For each line, let's add a line ending so that they will print
+        # separately instead of in one block. You can modify each element in a
+        # list easily using this syntax.
+        lines = [line + "\n" for line in lines]
+
+        # And then write all those lines to the file.
+        f.writelines(lines)
+
+    # Now go check out the file on the system to see what it says!
+    # Note that this function changes the file as it goes, so if you interrupt
+    # this function or the program crashes, the file will still be rewritten.
+    # This can be good or bad depending on your use case, but if the user can
+    # cancel input, it's usually a good idea not to write changes until they are
+    # completely finished.
+
+
 # Now let's go over classes.
 # This is a class that does not use inheritance.
 class MyClass:
@@ -383,6 +465,12 @@ if __name__ == "__main__":
 
     # Filter a dictionary:
     # print(filter_dict(my_dict, "a", "J"))
+
+    # Read from a file:
+    # print(read_file("lorem_ipsum.txt"))
+
+    # Write to a file:
+    # write_file("lorem_ipsum.txt")
 
     # MyClass:
     # my_class = MyClass()
