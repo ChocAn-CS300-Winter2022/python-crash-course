@@ -7,6 +7,12 @@ The purpose of this program is to accept a JSON file name as an argument in the
 command line, then deserialize that file into a readable object. After that,
 the program will let you edit some of the details of that object then
 reserialize back to the JSON file.
+
+"Serializing" is the process of converting data from a string to an object and
+back. To "serialize" is to convert an object to a string, and to
+"deserialize" is to convert a string to an object. JSON files are only text,
+so deserializing the file converts that text into an object, whereas serializing
+will convert that dictionary back to JSON.
 '''
 
 # We're going to use an enum for menu pages so that it's easier to keep track of
