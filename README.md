@@ -74,7 +74,7 @@ Don't panic! Open the command line, `cd` into the project directory, and enter t
 ```bash
 git checkout HEAD -- john_smith.json
 ```
-That will reset the file back to the last commit. The same concept applies to `lorem_ipsum.txt`.
+That will reset the file back to the last commit. The same concept applies to `lorem_ipsum.txt` or any other file in the git history.
 
 ### Why can't I edit John Smith's spouse and children, but I can change his marital status?
 Jane Smith and their children are entirely different people. In an ideal situation, we would have separate files on all of them and connect them via numeric IDs or another unique identifier. As it is, we're just going to prevent editing them and pretend that they're stored in separate files.
