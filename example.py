@@ -269,7 +269,7 @@ def filter_dict(dict, key_filter, value_filter):
                     if str(value).startswith(value_filter)]
 
     # The parentheses around these two variables indicate a tuple. This tuple's
-    # values can be access via index, where tuple[0] = key_dict and
+    # values can be accessed via index, where tuple[0] = key_dict and
     # tuple[1] = value_dict.
     return (key_dict, value_dict)
 
@@ -295,7 +295,6 @@ def read_file(filename):
     # 'a' = append
     # 'w+' = write and read
     with open(file, 'r') as f:
-        # We're going to use readlines() here.
         # read() will read all the text in a file into a single string.
         # readlines() will read all lines from the file into a list of strings.
         read = f.read()
@@ -321,8 +320,11 @@ def write_file(filename):
     # technically two "unrelated" functions so we'll do it twice.
     file = Path(".") / filename
 
-    if not file.is_file():
+    # If something exists with that name but is not a writeable file, let's
+    # cancel.
+    if file.exists() and not file.is_file():
         print("Invalid file.")
+        return
 
     with open(file, 'w') as f:
         # First we're going to get some user input using the "input" function.
@@ -334,8 +336,12 @@ def write_file(filename):
 
         # Now I will repeat this question 10 times to create a list of strings.
         lines = []
-
-        for i in range(0, 10):
+      
+        # We can use "string interpolation", or f-strings in Python, to insert
+        # a variable into a string. Begin with the letter "f" before the opening
+        # quotation mark, then wrap any referenced variables within curly
+        # brackets {}.
+        for i in range(10):
             lines.append(input(f"Enter some text ({i}): "))
 
         # For each line, let's add a line ending so that they will print
